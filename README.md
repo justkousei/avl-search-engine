@@ -60,27 +60,28 @@ El sistema permite interactuar mediante comandos en consola para gestionar tabla
 
 Comandos disponibles
 Comando	Descripción
-CREATE <tabla>	Crea una nueva tabla
-INSERT <tabla> <id> <nombre> <programa> <codigo> <semestre> <edad>	Inserta un registro
-FIND <tabla> <id>	Busca un registro por ID
-UPDATE <tabla> <id> ...	Actualiza un registro
-DELETE <tabla> <id>	Elimina un registro
-RANGE <tabla> <inicio> <fin>	Busca registros en un rango
-DROP <tabla>	Elimina una tabla
-EXIT	Cierra el programa
-Ejemplo de uso
-CREATE estudiantes
-INSERT estudiantes 10 Juan IA U001 5 20
-FIND estudiantes 10
-UPDATE estudiantes 10 Pedro Robotica U002 6 22
-DELETE estudiantes 10
-RANGE estudiantes 1 50
-DROP estudiantes
-EXIT
+-CREATE <tabla>	Crea una nueva tabla  
+-INSERT <tabla> <id> <nombre> <programa> <codigo> <semestre> <edad>	Inserta un registro  
+-FIND <tabla> <id>	Busca un registro por ID  
+-UPDATE <tabla> <id> ...	Actualiza un registro  
+-DELETE <tabla> <id>	Elimina un registro  
+-RANGE <tabla> <inicio> <fin>	Busca registros en un rango  
+-DROP <tabla>	Elimina una tabla  
+-EXIT	Cierra el programa  
+
+-Ejemplo de uso  
+-CREATE estudiantes  
+-INSERT estudiantes 10 Juan IA U001 5 20  
+-FIND estudiantes 10  
+-UPDATE estudiantes 10 Pedro Robotica U002 6 22  
+-DELETE estudiantes 10  
+-RANGE estudiantes 1 50  
+-DROP estudiantes  
+-EXIT  
 
 
 ## Requisitos
-Java 8 o superior (IMPORTANTE: debe coincidir con la versión de compilación)
+Java 16 o superior (IMPORTANTE: debe coincidir con la versión de compilación)
 Sistema operativo Windows, Linux o Mac
 Ejecución
 Compilar
@@ -88,7 +89,7 @@ javac Main.java
 Ejecutar
 java Main
 
-O ejecutar el .exe si ya está empaquetado.
+O ejecutar el .exe 
 
 ## Problemas comunes
 Error de versión de Java
