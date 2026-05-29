@@ -13,6 +13,34 @@ Persistencia de datos en archivos JSON
 Interfaz gráfica (GUI) incluida
 Consola interactiva con comandos
 
+## Tecnologías utilizadas
+
+Lenguaje: Java
+Estructura de datos: Árbol AVL
+Persistencia: Archivos JSON
+Entorno de desarrollo: Eclipse
+
+## Instalación
+
+Clonar el repositorio:
+git clone https://github.com/justkousei/Motor-de-B-squeda-AVL
+Abrir el proyecto en Eclipse o cualquier IDE compatible con Java.
+Asegurarse de que la carpeta src esté configurada correctamente.
+Ejecutar la clase principal:
+src/avl/Main.java
+
+## Uso
+
+El sistema permite al usuario:
+
+Agregar personas al sistema
+Buscar registros almacenados
+Eliminar datos existentes
+Visualizar la estructura del árbol AVL
+Guardar y cargar información desde un archivo JSON
+
+La interacción se realiza mediante una interfaz gráfica que facilita la gestión de los datos.
+
 
 ## Estructura del Proyecto
 ```
