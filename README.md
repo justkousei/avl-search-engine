@@ -1,26 +1,60 @@
-Motor de Búsqueda con Árboles AVL
-Descripción
+## Motor de Búsqueda con Árboles AVL
+## Descripción
 
 Este proyecto consiste en un motor de búsqueda implementado en Java que utiliza árboles AVL como estructura principal para almacenar y gestionar datos de manera eficiente.
 
 El sistema simula una base de datos ligera, permitiendo realizar operaciones como inserción, búsqueda, actualización y eliminación de registros, garantizando un rendimiento óptimo gracias al balance automático del árbol AVL.
 
-Características
+## Características
 Implementación de árboles AVL
 Inserción, eliminación y búsqueda eficiente (O(log n))
 Manejo de múltiples tablas
 Persistencia de datos en archivos JSON
 Interfaz gráfica (GUI) incluida
 Consola interactiva con comandos
-Estructura del Proyecto
-Carpeta / Archivo	Descripción
-avl/	Implementación del árbol AVL y nodos
-modelo/	Clases de datos (Tabla, Registro)
-gestor/	Gestión de bases de datos
-persistencia/	Manejo de archivos JSON
-vista/	Interfaz gráfica
-Main.java	Punto de entrada principal
-Funcionamiento
+
+
+## Estructura del Proyecto
+```
+Motor AVL
+│── src
+│   ├── avl
+│   │   ├── AVL.java
+│   │   ├── Nodo.java
+│   │   ├── Main.java
+│   │   ├── MainConsola.java
+│   │   └── ConsolaDB.java
+│   │
+│   ├── gestor
+│   │   └── DatabaseManager.java
+│   │
+│   ├── modelo
+│   │   ├── Registro.java
+│   │   └── Tabla.java
+│   │
+│   ├── persistencia
+│   │   └── JsonManager.java
+│   │
+│   ├── vista
+│   │   ├── VentanaDB.java
+│   │   ├── VentanaCrearTabla.java
+│   │   ├── VentanaInsertarRegistro.java
+│   │   ├── VentanaBuscarRegistro.java
+│   │   ├── VentanaBuscarRango.java
+│   │   ├── VentanaActualizarRegistro.java
+│   │   ├── VentanaEliminarRegistro.java
+│   │   └── panelArbol.java
+│
+│── bin
+│   └── (archivos compilados .class)
+│
+│── .project
+│── .classpath
+│── README.md
+│── MotorDeBusqueda.exe
+```
+
+## Funcionamiento
 
 El sistema permite interactuar mediante comandos en consola para gestionar tablas y registros.
 
@@ -43,18 +77,20 @@ DELETE estudiantes 10
 RANGE estudiantes 1 50
 DROP estudiantes
 EXIT
-Requisitos
+
+
+## Requisitos
 Java 8 o superior (IMPORTANTE: debe coincidir con la versión de compilación)
 Sistema operativo Windows, Linux o Mac
 Ejecución
-Compilar el proyecto:
+Compilar
 javac Main.java
-Ejecutar:
+Ejecutar
 java Main
 
 O ejecutar el .exe si ya está empaquetado.
 
-Problemas comunes
+## Problemas comunes
 Error de versión de Java
 
 Si aparece un error como:
