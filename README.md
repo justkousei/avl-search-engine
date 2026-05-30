@@ -69,7 +69,7 @@ El comando LOAD lee línea por línea el archivo y ejecuta los comandos como si 
 Ejemplo de contenido del dataset:
 
 CREATE estudiantes
-INSERT estudiantes 1 Juan IA U001 5 20
+INSERT estudiantes 1 Juan Electronica U001 5 20
 INSERT estudiantes 2 Maria Medicina U002 6 21
 INSERT estudiantes 3 Pedro Sistemas U003 4 19
  Ubicación de los archivos
