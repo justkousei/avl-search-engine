@@ -1,0 +1,19 @@
+CREATE estudiantes nombre carrera codigo semestre edad
+
+INSERT estudiantes 10 nombre=Juan carrera=IA codigo=U010 semestre=5 edad=20
+INSERT estudiantes 5 nombre=Maria carrera=Medicina codigo=U005 semestre=6 edad=21
+INSERT estudiantes 15 nombre=Pedro carrera=Sistemas codigo=U015 semestre=4 edad=19
+INSERT estudiantes 20 nombre=Ana carrera=Derecho codigo=U020 semestre=7 edad=22
+INSERT estudiantes 25 nombre=Luis carrera=Arquitectura codigo=U025 semestre=3 edad=18
+INSERT estudiantes 30 nombre=Carlos carrera=Economia codigo=U030 semestre=8 edad=23
+INSERT estudiantes 2 nombre=Valentina carrera=IA codigo=U002 semestre=1 edad=17
+INSERT estudiantes 8 nombre=Jorge carrera=Medicina codigo=U008 semestre=2 edad=19
+INSERT estudiantes 12 nombre=Camila carrera=Psicologia codigo=U012 semestre=3 edad=20
+INSERT estudiantes 18 nombre=Andres carrera=Ingenieria codigo=U018 semestre=6 edad=22
+INSERT estudiantes 22 nombre=Sofia carrera=Derecho codigo=U022 semestre=5 edad=21
+INSERT estudiantes 28 nombre=Diego carrera=Arquitectura codigo=U028 semestre=7 edad=23
+INSERT estudiantes 35 nombre=Laura carrera=Economia codigo=U035 semestre=8 edad=24
+INSERT estudiantes 1 nombre=Sebastian carrera=IA codigo=U001 semestre=1 edad=17
+INSERT estudiantes 6 nombre=Daniela carrera=Medicina codigo=U006 semestre=2 edad=18
+INSERT estudiantes 14 nombre=Mateo carrera=Sistemas codigo=U014 semestre=4 edad=20
+INSERT estudiantes 17 nombre=Paula carrera=Psicologia codigo=U017 semestre=5 edad=21

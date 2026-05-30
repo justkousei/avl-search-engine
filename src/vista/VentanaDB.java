@@ -129,11 +129,13 @@ public class VentanaDB {
 				panel,
 				BorderLayout.WEST
 		);
+		//Ventana scroleable
+		JScrollPane scrollArbol = new JScrollPane(panelArbol);
 
-		ventana.add(
-				panelArbol,
-				BorderLayout.CENTER
-		);
+		scrollArbol.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		scrollArbol.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+		ventana.add(scrollArbol, BorderLayout.CENTER);
 
 		// SELECCIONAR TABLA
 		btnSeleccionar.addActionListener(e -> {

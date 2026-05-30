@@ -40,6 +40,38 @@ public class ConsolaDB {
 			ejecutarComando(linea);
 		}
 	}
+	
+	public void cargarDataset(String tabla, String ruta) {
+	    try {
+	        java.io.File archivo = new java.io.File(ruta);
+	        Scanner sc = new Scanner(archivo);
+
+	        // Crea la tabla si no existe
+	        if (!db.existeTabla(tabla)) {
+	            System.out.println("La tabla no existe. Debes crearla primero.");
+	            return;
+	        }
+
+	        while (sc.hasNextLine()) {
+	            String linea = sc.nextLine().trim();
+
+	            if (linea.isEmpty()) continue;
+
+	            // construye comando INSERT automáticamente
+	            String comando = "INSERT " + tabla + " " + linea;
+
+	            System.out.println(">> " + comando);
+	            ejecutarComando(comando);
+	        }
+
+	        sc.close();
+	        System.out.println(" Dataset cargado correctamente.");
+
+	    } catch (Exception e) {
+	        System.out.println(" Error cargando dataset: " + e.getMessage());
+	    }
+	}
+	
 
 	private void ejecutarComando(String comando) {
 
@@ -66,6 +98,19 @@ public class ConsolaDB {
 				);
 
 				System.out.println("Tabla creada.");
+			}
+			//LOAD dataset
+			
+			else if (partes[0].equalsIgnoreCase("LOAD")) {
+				
+			    if (partes.length >= 4 && partes[1].equalsIgnoreCase("DATASET")) {
+			        String tabla = partes[2];
+			        String ruta = partes[3];
+
+			        cargarDataset(tabla, ruta);
+			    } else {
+			        System.out.println("Uso: LOAD DATASET <tabla> <ruta>");
+			    }
 			}
 
 			// DROP tabla

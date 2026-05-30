@@ -1,0 +1,8 @@
+1 nombre=Juan carrera=IA codigo=U001 semestre=5 edad=20
+4 nombre=Maria carrera=Medicina codigo=U002 semestre=6 edad=21
+6 nombre=Pedro carrera=Sistemas codigo=U003 semestre=4 edad=19
+23 nombre=Laura carrera=Derecho codigo=U004 semestre=3 edad=18
+5 nombre=Andres carrera=Ingenieria codigo=U005 semestre=7 edad=22
+12 nombre=Sofia carrera=Psicologia codigo=U006 semestre=2 edad=18
+12 nombre=Diego carrera=Arquitectura codigo=U007 semestre=8 edad=23
+8 nombre=Camila carrera=Economia codigo=U008 semestre=5 edad=20

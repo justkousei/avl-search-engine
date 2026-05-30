@@ -22,13 +22,14 @@ public class panelArbol extends JPanel {
 	private static final Color COLOR_BF_MAL     = new Color(163, 45, 45);
 
 	private static final int RADIO = 24;
-	private static final int GAP_Y = 75;
+	private static final int GAP_Y = 90;
 
 	public panelArbol() {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createTitledBorder("Árbol AVL"));
+		//El tamaño del lienzo interno para los sliders
+		setPreferredSize(new Dimension(2000, 1000)); 
 	}
-
 	//Llamar desde la ventana para actualizar la raiz
 	public void setRaiz(Nodo raiz) {
 		this.raiz = raiz;
@@ -64,17 +65,38 @@ public class panelArbol extends JPanel {
 			return;
 		}
 
-		calcularPosiciones(raiz, getWidth() / 2, 50, getWidth() / 4);
+		// Se eliminó la variable gapInicial y ahora solo se pasa la coordenada inicial
+		calcularPosiciones(raiz, getWidth() / 2, 50);
 		dibujarAristas(g2, raiz);
 		dibujarNodos(g2, raiz, true);
 	}
 
+	// Método modificado para calcular la separación (gap) según la altura de cada nodo
+	private void calcularPosiciones(Nodo n, int x, int y) {
+		if (n == null) return;
+		
+		n.px = x;
+		n.py = y;
+
+		// El espacio horizontal crece exponencialmente según la altura actual del nodo
+		int gap = (int) Math.pow(2, altura(n) - 1) * 28;
+		
+		// Evita que los nodos se encimen si el gap calculado es muy pequeño
+		gap = Math.max(gap, RADIO * 2 + 10);
+
+		if (n.getIzq() != null) {
+			calcularPosiciones(n.getIzq(), x - gap, y + GAP_Y);
+		}
+		if (n.getDer() != null) {
+			calcularPosiciones(n.getDer(), x + gap, y + GAP_Y);
+		}
+	}
 	//Asignar coordenadas a cada nodo recursivamente
 	private void calcularPosiciones(Nodo n, int x, int y, int gap) {
 		if (n == null) return;
 		n.px = x;
 		n.py = y;
-		int nuevoGap = Math.max(gap * 10 / 17, RADIO + 10);
+		int nuevoGap = Math.max(gap / 2, RADIO + 15);
 		calcularPosiciones(n.getIzq(), x - nuevoGap, y + GAP_Y, nuevoGap);
 		calcularPosiciones(n.getDer(), x + nuevoGap, y + GAP_Y, nuevoGap);
 	}

@@ -1,0 +1,10 @@
+CREATE libros titulo autor codigo paginas año
+
+INSERT libros 30 titulo=CleanCode autor=Martin codigo=L030 paginas=464 año=2008
+INSERT libros 10 titulo=EloquentJavaScript autor=Haverbeke codigo=L010 paginas=472 año=2018
+INSERT libros 50 titulo=Algoritmos autor=Cormen codigo=L050 paginas=1312 año=2009
+INSERT libros 20 titulo=HarryPotter autor=Rowling codigo=L020 paginas=350 año=2001
+INSERT libros 40 titulo=DesignPatterns autor=GoF codigo=L040 paginas=395 año=1994
+INSERT libros 5 titulo=PythonCrash autor=Matthes codigo=L005 paginas=560 año=2019
+INSERT libros 60 titulo=DataStructures autor=Weiss codigo=L060 paginas=720 año=2013
+INSERT libros 23 titulo=C++PRNCIPIOS autor=MOD codigo=L023 paginas=450 año=2018

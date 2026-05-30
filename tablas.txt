@@ -1,0 +1,3 @@
+libros;titulo,autor,codigo,paginas,año,
+estudiantes;nombre,carrera,codigo,semestre,edad,
+productos;nombre,categoria,codigo,stock,precio,
