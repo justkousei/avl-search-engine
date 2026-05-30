@@ -1,17 +1,17 @@
-## Motor de Búsqueda con Árbol AVL
+## Motor de Búsqueda con Árboles AVL
+## Descripción
 
-Este proyecto consiste en un motor de búsqueda desarrollado en Java que permite almacenar, organizar y consultar información de personas utilizando un árbol AVL. El sistema garantiza eficiencia en las operaciones gracias al balanceo automático del árbol, y además incluye persistencia de datos en archivos JSON y una interfaz gráfica para la interacción con el usuario.
+Este proyecto consiste en un motor de búsqueda implementado en Java que utiliza árboles AVL como estructura principal para almacenar y gestionar datos de manera eficiente.
 
+El sistema simula una base de datos ligera, permitiendo realizar operaciones como inserción, búsqueda, actualización y eliminación de registros, garantizando un rendimiento óptimo gracias al balance automático del árbol AVL.
 
 ## Características
-
-Inserción de registros en un árbol AVL auto-balanceado
-Búsqueda eficiente de datos
-Eliminación de nodos manteniendo el balance
+Implementación de árboles AVL
+Inserción, eliminación y búsqueda eficiente (O(log n))
+Manejo de múltiples tablas
 Persistencia de datos en archivos JSON
-Interfaz gráfica para visualizar y gestionar la información
-Representación visual del árbol
-
+Interfaz gráfica (GUI) incluida
+Consola interactiva con comandos
 
 ## Tecnologías utilizadas
 
@@ -19,7 +19,6 @@ Lenguaje: Java
 Estructura de datos: Árbol AVL
 Persistencia: Archivos JSON
 Entorno de desarrollo: Eclipse
-
 
 ## Instalación
 
@@ -29,7 +28,6 @@ Abrir el proyecto en Eclipse o cualquier IDE compatible con Java.
 Asegurarse de que la carpeta src esté configurada correctamente.
 Ejecutar la clase principal:
 src/avl/Main.java
-
 
 ## Uso
 
@@ -44,72 +42,94 @@ Guardar y cargar información desde un archivo JSON
 La interacción se realiza mediante una interfaz gráfica que facilita la gestión de los datos.
 
 
-## Ejemplo de funcionamiento
-
-El usuario ingresa los datos de una persona.
-El sistema inserta el registro en el árbol AVL.
-El árbol se balancea automáticamente si es necesario.
-El usuario puede buscar el registro y obtener el resultado de forma rápida.
-
-
-## Estructura del proyecto
-
+## Estructura del Proyecto
 ```
 Motor AVL
 │── src
 │   ├── avl
 │   │   ├── AVL.java
 │   │   ├── Nodo.java
-│   │   └── Main.java
+│   │   ├── Main.java
+│   │   ├── MainConsola.java
+│   │   └── ConsolaDB.java
+│   │
 │   ├── gestor
 │   │   └── DatabaseManager.java
+│   │
 │   ├── modelo
-│   │   └── Persona.java
+│   │   ├── Registro.java
+│   │   └── Tabla.java
+│   │
 │   ├── persistencia
 │   │   └── JsonManager.java
+│   │
 │   ├── vista
 │   │   ├── VentanaDB.java
+│   │   ├── VentanaCrearTabla.java
+│   │   ├── VentanaInsertarRegistro.java
+│   │   ├── VentanaBuscarRegistro.java
+│   │   ├── VentanaBuscarRango.java
+│   │   ├── VentanaActualizarRegistro.java
+│   │   ├── VentanaEliminarRegistro.java
 │   │   └── panelArbol.java
 │
-│── personas.json
+│── bin
+│   └── (archivos compilados .class)
+│
+│── .project
+│── .classpath
+│── README.md
+│── MotorDeBusqueda.exe
 ```
 
-## Funcionamiento interno
+## Funcionamiento
 
-El núcleo del sistema es un árbol AVL, que es un árbol binario de búsqueda auto-balanceado. Esto significa que, después de cada inserción o eliminación, el árbol realiza rotaciones para mantener su equilibrio.
+El sistema permite interactuar mediante comandos en consola para gestionar tablas y registros.
 
-Las operaciones principales incluyen:
+Comandos disponibles
+Comando	Descripción
+-CREATE <tabla>	Crea una nueva tabla  
+-INSERT <tabla> <id> <nombre> <programa> <codigo> <semestre> <edad>	Inserta un registro  
+-FIND <tabla> <id>	Busca un registro por ID  
+-UPDATE <tabla> <id> ...	Actualiza un registro  
+-DELETE <tabla> <id>	Elimina un registro  
+-RANGE <tabla> <inicio> <fin>	Busca registros en un rango  
+-DROP <tabla>	Elimina una tabla  
+-EXIT	Cierra el programa  
 
-El núcleo del sistema es un árbol AVL, que es un árbol binario de búsqueda auto-balanceado. Esto significa que, después de cada inserción o eliminación, el árbol realiza rotaciones para mantener su equilibrio y garantizar tiempos de respuesta eficientes.
+-Ejemplo de uso  
+-CREATE estudiantes  
+-INSERT estudiantes 10 Juan IA U001 5 20  
+-FIND estudiantes 10  
+-UPDATE estudiantes 10 Pedro Robotica U002 6 22  
+-DELETE estudiantes 10  
+-RANGE estudiantes 1 50  
+-DROP estudiantes  
+-EXIT  
 
-El sistema funciona a partir de comandos similares a los de una base de datos, permitiendo gestionar colecciones de datos de manera estructurada. A continuación se describen los principales comandos soportados:
 
-CREATE estudiantes
-Crea una nueva colección (o estructura) llamada "estudiantes" donde se almacenarán los registros en un árbol AVL.
+## Requisitos
+Java 16 o superior (IMPORTANTE: debe coincidir con la versión de compilación)
+Sistema operativo Windows, Linux o Mac
+Ejecución
+Compilar
+javac Main.java
+Ejecutar
+java Main
 
-INSERT estudiantes 10 Juan Sistemas 20251020016 3 18
-Inserta un nuevo registro en la colección. En este caso:
+O ejecutar el .exe 
 
-Clave: 10
-Nombre: Juan 
-Programa: Sistemas
-Código: 20251020016
-Semestre: 3
-Edad: 18
+## Problemas comunes
+Error de versión de Java
 
-El sistema ubica el nodo en el árbol AVL y realiza las rotaciones necesarias para mantener el balance.
+Si aparece un error como:
 
-FIND estudiantes 10
-Busca un registro dentro del árbol AVL usando su clave. La búsqueda se realiza en tiempo O(log n).
-UPDATE estudiantes 10 Pedro Electrica 20251020100 6 22
-Modifica los datos de un registro existente identificado por su clave, manteniendo su posición en el árbol.
-DELETE estudiantes 10
-Elimina un nodo del árbol AVL. Posteriormente, el sistema re-balancea el árbol automáticamente.
-RANGE estudiantes 1 50
-Realiza una búsqueda por rango, mostrando todos los registros cuyas claves estén entre 1 y 50. Esta operación aprovecha el recorrido ordenado del árbol.
-DROP estudiantes
-Elimina completamente la colección, borrando todos los datos almacenados en el árbol.
-EXIT
-Finaliza la ejecución del sistema.
+UnsupportedClassVersionError
 
-Además, el sistema utiliza un gestor de base de datos que permite guardar y cargar los datos en formato JSON, asegurando persistencia.
+Significa que el proyecto fue compilado con una versión más nueva de Java que la que estás usando.
+
+Solución:
+
+Actualizar Java
+o
+Compilar el proyecto con una versión más baja
