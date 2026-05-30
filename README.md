@@ -31,6 +31,49 @@ src/avl/Main.java
 
 ## Uso
 
+Datasets de prueba y carga de datos
+
+Este proyecto incluye conjuntos de datos de prueba y scripts para facilitar la carga de información en el sistema sin necesidad de ingresar registros manualmente.
+
+Tipos de datasets
+
+El proyecto contiene al menos dos datasets:
+
+Dataset pequeño: usado para pruebas rápidas del sistema y validación de operaciones básicas.
+Dataset mediano: contiene una mayor cantidad de registros para evaluar el rendimiento del árbol AVL.
+
+Estos datasets están diseñados para probar operaciones como:
+
+Inserción masiva de datos
+Búsqueda eficiente
+Eliminación de registros
+Balanceo del árbol AVL
+
+Scripts de carga de datos (LOAD DATASETS)
+
+El sistema permite cargar automáticamente los datasets mediante scripts que ejecutan comandos predefinidos.
+
+Ejemplo de uso
+
+Para cargar un dataset desde un archivo:
+
+LOAD datasets/pequeno.txt
+
+o
+
+LOAD datasets/mediano.txt
+Funcionamiento del LOAD
+
+El comando LOAD lee línea por línea el archivo y ejecuta los comandos como si fueran ingresados en consola.
+
+Ejemplo de contenido del dataset:
+
+CREATE estudiantes
+INSERT estudiantes 1 Juan IA U001 5 20
+INSERT estudiantes 2 Maria Medicina U002 6 21
+INSERT estudiantes 3 Pedro Sistemas U003 4 19
+ Ubicación de los archivos
+Motor AVL
 El sistema permite al usuario:
 
 Agregar personas al sistema
@@ -72,10 +115,14 @@ Motor AVL
 │   │   ├── VentanaActualizarRegistro.java
 │   │   ├── VentanaEliminarRegistro.java
 │   │   └── panelArbol.java
-│
 │── bin
 │   └── (archivos compilados .class)
-│
+│── datasets
+│   ├── data_pequeno.txt
+│   ├── data_mediano.txt
+│── scripts
+│   ├── cargar_mediano.txt
+│   ├── cargar_pequemo.txt
 │── .project
 │── .classpath
 │── README.md
