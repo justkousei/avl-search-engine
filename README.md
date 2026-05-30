@@ -69,10 +69,10 @@ El comando LOAD lee línea por línea el archivo y ejecuta los comandos como si 
 Ejemplo de contenido del dataset:
 
 CREATE estudiantes
-INSERT estudiantes 1 Juan Electronica U001 5 20
-INSERT estudiantes 2 Maria Medicina U002 6 21
-INSERT estudiantes 3 Pedro Sistemas U003 4 19
- Ubicación de los archivos
+INSERT estudiantes 1 Juan Electronica 20261
+INSERT estudiantes 2 Maria Catastral 20261
+INSERT estudiantes 3 Pedro Sistemas 20261
+Ubicación de los archivos
 Motor AVL
 El sistema permite al usuario:
 
@@ -80,6 +80,7 @@ Agregar personas al sistema
 Buscar registros almacenados
 Eliminar datos existentes
 Visualizar la estructura del árbol AVL
+Especificar los espacios que tendra cada arbol
 Guardar y cargar información desde un archivo JSON
 
 La interacción se realiza mediante una interfaz gráfica que facilita la gestión de los datos.
