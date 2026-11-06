@@ -60,9 +60,17 @@ public class AVL {
 	}
 
 	//insertar general
-	public void insertar(int clave, Registro info) {
+	// devuelve false (sin modificar nada) si la clave ya existe
+	public boolean insertar(int clave, Registro info) {
+
+		if(buscarNodo(raiz, clave) != null) {
+
+			return false;
+		}
 
 		raiz = insertarRecursivo(raiz, clave, info);
+
+		return true;
 	}
 
 	//insertar recursivo
@@ -309,13 +317,21 @@ public class AVL {
 	}
 
 	//eliminar
-	public void eliminar(int clave) {
+	// devuelve false si la clave no existe
+	public boolean eliminar(int clave) {
+
+		if(buscarNodo(raiz, clave) == null) {
+
+			return false;
+		}
 
 		raiz = eliminarRecursivo(raiz, clave);
+
+		return true;
 	}
 
 	//eliminar recursivo
-	public Nodo eliminarRecursivo(Nodo nodo, int clave) {
+	private Nodo eliminarRecursivo(Nodo nodo, int clave) {
 
 		if(nodo == null) {
 
@@ -351,7 +367,7 @@ public class AVL {
 			}else {
 
 				//2 hijos
-				Nodo sucesor = ultimoValor(nodo.der);
+				Nodo sucesor = minimo(nodo.der);
 
 				nodo.clave = sucesor.clave;
 				nodo.info = sucesor.info;
@@ -403,8 +419,8 @@ public class AVL {
 		return nodo;
 	}
 
-	//ultimo valor
-	private Nodo ultimoValor(Nodo nodo) {
+	//nodo con la clave menor de un subarbol (sucesor inorder)
+	private Nodo minimo(Nodo nodo) {
 
 		Nodo actual = nodo;
 
@@ -416,22 +432,27 @@ public class AVL {
 		return actual;
 	}
 
-	//guardar archivo
+	//guardar archivo: reescribe la tabla completa con un solo acceso al disco
 	public void guardarEnArchivo(JsonManager archivos) {
 
-		recorrerYGuardar(raiz, archivos);
+		archivos.reescribir(this);
 	}
 
-	//recorrido inorder
-	private void recorrerYGuardar(Nodo nodo, JsonManager archivos) {
+	//recorrer inorder aplicando una accion a cada (clave, registro)
+	public void recorrerInorder(java.util.function.BiConsumer<Integer, Registro> accion) {
+
+		recorrerInorder(raiz, accion);
+	}
+
+	private void recorrerInorder(Nodo nodo, java.util.function.BiConsumer<Integer, Registro> accion) {
 
 		if(nodo != null) {
 
-			recorrerYGuardar(nodo.izq, archivos);
+			recorrerInorder(nodo.izq, accion);
 
-			archivos.guardarRegistro(nodo.clave, nodo.info);
+			accion.accept(nodo.clave, nodo.info);
 
-			recorrerYGuardar(nodo.der, archivos);
+			recorrerInorder(nodo.der, accion);
 		}
 	}
 

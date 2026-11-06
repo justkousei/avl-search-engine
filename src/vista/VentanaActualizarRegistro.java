@@ -47,7 +47,7 @@ public class VentanaActualizarRegistro extends JDialog {
 				padre
 		);
 
-		add(panel);
+		add(new JScrollPane(panel));
 
 		//clave
 		JLabel lblClave =
@@ -144,6 +144,9 @@ public class VentanaActualizarRegistro extends JDialog {
 		);
 
 		panel.add(btnActualizar);
+
+		//alto del contenido segun la cantidad de campos (el scroll se encarga del resto)
+		panel.setPreferredSize(new java.awt.Dimension(360, y + 90));
 
 		//accion cargar
 		btnCargar.addActionListener(e -> {

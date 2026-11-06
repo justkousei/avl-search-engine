@@ -23,16 +23,28 @@ public class panelArbol extends JPanel {
 
 	private static final int RADIO = 24;
 	private static final int GAP_Y = 90;
+	private static final int SEP_X = 36;   // separacion horizontal entre nodos consecutivos (inorder)
+	private static final int MARGEN = 40;
+
+	private int offsetX = MARGEN;
+	private int contador;                  // posicion inorder durante el calculo de coordenadas
+	private Timer timerResaltado;
 
 	public panelArbol() {
 		setBackground(Color.WHITE);
 		setBorder(BorderFactory.createTitledBorder("Árbol AVL"));
-		//El tamaño del lienzo interno para los sliders
-		setPreferredSize(new Dimension(2000, 1000)); 
+		setPreferredSize(new Dimension(800, 500));
 	}
 	//Llamar desde la ventana para actualizar la raiz
 	public void setRaiz(Nodo raiz) {
 		this.raiz = raiz;
+
+		// el lienzo crece con el arbol, asi nunca se corta y el scroll funciona
+		int ancho = Math.max(800, contar(raiz) * SEP_X + 2 * MARGEN);
+		int alto = Math.max(500, altura(raiz) * GAP_Y + 100);
+		setPreferredSize(new Dimension(ancho, alto));
+
+		revalidate();
 		repaint();
 	}
 
@@ -41,13 +53,16 @@ public class panelArbol extends JPanel {
 		this.nodoResaltado = clave;
 		repaint();
 
-		//quitar el resaltado despues de 1.5 segundos
-		Timer t = new Timer(1500, e -> {
+		//quitar el resaltado despues de 1.5 segundos (reiniciando el temporizador anterior)
+		if (timerResaltado != null) {
+			timerResaltado.stop();
+		}
+		timerResaltado = new Timer(1500, e -> {
 			nodoResaltado = -1;
 			repaint();
 		});
-		t.setRepeats(false);
-		t.start();
+		timerResaltado.setRepeats(false);
+		timerResaltado.start();
 	}
 
 	@Override
@@ -65,40 +80,31 @@ public class panelArbol extends JPanel {
 			return;
 		}
 
-		// Se eliminó la variable gapInicial y ahora solo se pasa la coordenada inicial
-		calcularPosiciones(raiz, getWidth() / 2, 50);
+		// el arbol se centra si es mas angosto que la ventana
+		int anchoArbol = (contar(raiz) - 1) * SEP_X;
+		offsetX = Math.max(MARGEN, (getWidth() - anchoArbol) / 2);
+		contador = 0;
+		calcularPosiciones(raiz, 0);
 		dibujarAristas(g2, raiz);
 		dibujarNodos(g2, raiz, true);
 	}
 
-	// Método modificado para calcular la separación (gap) según la altura de cada nodo
-	private void calcularPosiciones(Nodo n, int x, int y) {
+	// Layout por recorrido inorder: la coordenada X es la posicion del nodo en el
+	// orden de las claves, asi los nodos nunca se encimen sin importar la altura.
+	private void calcularPosiciones(Nodo n, int profundidad) {
 		if (n == null) return;
-		
-		n.px = x;
-		n.py = y;
 
-		// El espacio horizontal crece exponencialmente según la altura actual del nodo
-		int gap = (int) Math.pow(2, altura(n) - 1) * 28;
-		
-		// Evita que los nodos se encimen si el gap calculado es muy pequeño
-		gap = Math.max(gap, RADIO * 2 + 10);
+		calcularPosiciones(n.getIzq(), profundidad + 1);
 
-		if (n.getIzq() != null) {
-			calcularPosiciones(n.getIzq(), x - gap, y + GAP_Y);
-		}
-		if (n.getDer() != null) {
-			calcularPosiciones(n.getDer(), x + gap, y + GAP_Y);
-		}
+		n.px = offsetX + contador * SEP_X;
+		n.py = 50 + profundidad * GAP_Y;
+		contador++;
+
+		calcularPosiciones(n.getDer(), profundidad + 1);
 	}
-	//Asignar coordenadas a cada nodo recursivamente
-	private void calcularPosiciones(Nodo n, int x, int y, int gap) {
-		if (n == null) return;
-		n.px = x;
-		n.py = y;
-		int nuevoGap = Math.max(gap / 2, RADIO + 15);
-		calcularPosiciones(n.getIzq(), x - nuevoGap, y + GAP_Y, nuevoGap);
-		calcularPosiciones(n.getDer(), x + nuevoGap, y + GAP_Y, nuevoGap);
+
+	private int contar(Nodo n) {
+		return n == null ? 0 : 1 + contar(n.getIzq()) + contar(n.getDer());
 	}
 
 	//Dibujar lineas de aristas

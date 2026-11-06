@@ -31,7 +31,7 @@ public class VentanaInsertarRegistro extends JDialog {
 		);
 
 		camposTexto =
-				new HashMap<>();
+				new java.util.LinkedHashMap<>();
 
 		Tabla tabla =
 				db.obtenerTabla(
@@ -47,7 +47,7 @@ public class VentanaInsertarRegistro extends JDialog {
 				padre
 		);
 
-		add(panel);
+		add(new JScrollPane(panel));
 
 		//clave
 		JLabel lblClave =
@@ -130,6 +130,9 @@ public class VentanaInsertarRegistro extends JDialog {
 
 		panel.add(btnInsertar);
 
+		//alto del contenido segun la cantidad de campos (el scroll se encarga del resto)
+		panel.setPreferredSize(new java.awt.Dimension(360, y + 90));
+
 		//accion insertar
 		btnInsertar.addActionListener(e -> {
 
@@ -158,7 +161,7 @@ public class VentanaInsertarRegistro extends JDialog {
 				Registro r =
 						new Registro();
 
-				for(String campo : camposTexto.keySet()) {
+				for(String campo : tabla.getCampos()) {
 
 					r.agregarCampo(
 							campo,

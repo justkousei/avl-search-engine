@@ -112,6 +112,16 @@ public class VentanaBuscarRango extends JDialog {
 								txtMax.getText()
 						);
 
+				if(min > max) {
+
+					JOptionPane.showMessageDialog(
+							padre,
+							"La clave mínima no puede ser mayor que la máxima."
+					);
+
+					return;
+				}
+
 				ArrayList<Registro> lista =
 						db.obtenerTabla(
 								tablaActual
@@ -121,6 +131,16 @@ public class VentanaBuscarRango extends JDialog {
 										min,
 										max
 								);
+
+				if(lista.isEmpty()) {
+
+					JOptionPane.showMessageDialog(
+							padre,
+							"No hay registros en ese rango."
+					);
+
+					return;
+				}
 
 				StringBuilder sb =
 						new StringBuilder();

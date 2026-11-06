@@ -98,8 +98,29 @@ public class VentanaCrearTabla extends JDialog {
 							"Nombre del campo:"
 					);
 
-			if(nombreCampo == null ||
-					nombreCampo.isEmpty()) {
+			if(nombreCampo == null) {
+
+				return;
+			}
+
+			nombreCampo = nombreCampo.trim();
+
+			if(!DatabaseManager.nombreValido(nombreCampo)) {
+
+				JOptionPane.showMessageDialog(
+						this,
+						"Nombre de campo inválido: use solo letras, números y _ ."
+				);
+
+				return;
+			}
+
+			if(campos.contains(nombreCampo)) {
+
+				JOptionPane.showMessageDialog(
+						this,
+						"Ese campo ya existe."
+				);
 
 				return;
 			}
@@ -131,22 +152,27 @@ public class VentanaCrearTabla extends JDialog {
 		btnCrear.addActionListener(e -> {
 
 			String nombre =
-					txtNombre.getText();
+					txtNombre.getText().trim();
 
-			if(nombre.isEmpty()) {
+			if(!DatabaseManager.nombreValido(nombre)) {
 
 				JOptionPane.showMessageDialog(
-						padre,
-						"Ingrese nombre."
+						this,
+						"Nombre inválido: use solo letras, números y _ ."
 				);
 
 				return;
 			}
 
-			db.crearTabla(
-					nombre,
-					campos
-			);
+			if(!db.crearTabla(nombre, campos)) {
+
+				JOptionPane.showMessageDialog(
+						this,
+						"La tabla '" + nombre + "' ya existe."
+				);
+
+				return;
+			}
 
 			JOptionPane.showMessageDialog(
 					padre,

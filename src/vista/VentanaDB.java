@@ -220,19 +220,47 @@ public class VentanaDB {
 			//eliminar
 			if(opcion == 1) {
 
-				String tabla =
-						JOptionPane.showInputDialog(
-								"Nombre tabla:"
-						);
+				String[] existentes = db.obtenerNombresTablas();
+
+				if(existentes.length == 0) {
+
+					JOptionPane.showMessageDialog(
+							ventana,
+							"No hay tablas creadas."
+					);
+
+					return;
+				}
+
+				String tabla = (String) JOptionPane.showInputDialog(
+						ventana,
+						"Tabla a eliminar:",
+						"Eliminar árbol",
+						JOptionPane.PLAIN_MESSAGE,
+						null,
+						existentes,
+						existentes[0]
+				);
 
 				if(tabla == null) {
 
 					return;
 				}
 
-				db.eliminarTabla(
-						tabla
+				int confirmar = JOptionPane.showConfirmDialog(
+						ventana,
+						"¿Eliminar la tabla '" + tabla + "' y todos sus registros?\nEsta acción no se puede deshacer.",
+						"Confirmar",
+						JOptionPane.YES_NO_OPTION,
+						JOptionPane.WARNING_MESSAGE
 				);
+
+				if(confirmar != JOptionPane.YES_OPTION) {
+
+					return;
+				}
+
+				db.eliminarTabla(tabla);
 
 				if(tabla.equals(
 						tablaActual
@@ -279,18 +307,7 @@ public class VentanaDB {
 					return;
 				}
 
-				String tipo =
-						JOptionPane.showInputDialog(
-								"Tipo:\n(entero/texto/real/boolean)"
-						);
-
-				if(tipo == null ||
-						tipo.isEmpty()) {
-
-					return;
-				}
-
-				db.agregarCampoTabla(
+db.agregarCampoTabla(
 						tablaActual,
 						campo
 				);
