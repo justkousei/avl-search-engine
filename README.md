@@ -1,183 +1,183 @@
-## Motor de Búsqueda con Árboles AVL
-## Descripción
+# Motor de Búsqueda con Árboles AVL
 
-Este proyecto consiste en un motor de búsqueda implementado en Java que utiliza árboles AVL como estructura principal para almacenar y gestionar datos de manera eficiente.
+![Java](https://img.shields.io/badge/Java-16%2B-orange?logo=openjdk&logoColor=white)
+![Estructura](https://img.shields.io/badge/Estructura-%C3%81rbol%20AVL-green)
+![Persistencia](https://img.shields.io/badge/Persistencia-JSON-blue)
 
-El sistema simula una base de datos ligera, permitiendo realizar operaciones como inserción, búsqueda, actualización y eliminación de registros, garantizando un rendimiento óptimo gracias al balance automático del árbol AVL.
+Motor de búsqueda implementado en **Java** que utiliza **árboles AVL** como estructura principal para almacenar y gestionar datos de manera eficiente.
+
+El sistema simula una base de datos ligera que permite insertar, buscar, actualizar y eliminar registros, garantizando un rendimiento óptimo gracias al balanceo automático del árbol AVL.
+
+<!-- Cuando tengas capturas, guárdalas en docs/ y descomenta:
+![Interfaz gráfica](docs/captura_gui.png)
+-->
 
 ## Características
-Implementación de árboles AVL
-Inserción, eliminación y búsqueda eficiente (O(log n))
-Manejo de múltiples tablas
-Persistencia de datos en archivos JSON
-Interfaz gráfica (GUI) incluida
-Consola interactiva con comandos
+
+- Implementación propia de árboles AVL con balanceo automático.
+- Inserción, eliminación y búsqueda en **O(log n)**.
+- Búsqueda por rango de IDs.
+- Manejo de múltiples tablas.
+- Persistencia de datos en archivos JSON.
+- Interfaz gráfica (GUI) con visualización del árbol.
+- Consola interactiva con comandos.
+- Carga masiva de datos mediante scripts y datasets de prueba.
 
 ## Tecnologías utilizadas
 
-Lenguaje: Java
-Estructura de datos: Árbol AVL
-Persistencia: Archivos JSON
-Entorno de desarrollo: Eclipse
+| Componente            | Tecnología        |
+| --------------------- | ----------------- |
+| Lenguaje              | Java              |
+| Estructura de datos   | Árbol AVL         |
+| Persistencia          | Archivos JSON     |
+| Interfaz gráfica      | Java Swing        |
+| Entorno de desarrollo | Eclipse / VS Code |
+
+## Requisitos
+
+- **Java 16 o superior** (debe coincidir con la versión con la que se compila).
+- Windows, Linux o macOS.
 
 ## Instalación
 
-Clonar el repositorio:
-git clone https://github.com/justkousei/Motor-de-B-squeda-AVL
-Abrir el proyecto en Eclipse o cualquier IDE compatible con Java.
-Asegurarse de que la carpeta src esté configurada correctamente.
-Ejecutar la clase principal:
-src/avl/Main.java
+1. Clona el repositorio:
+
+   ```bash
+   git clone https://github.com/justkousei/Motor_de_Busqueda_AVL.git
+   cd Motor_de_Busqueda_AVL
+   ```
+
+2. Compila el proyecto:
+
+   ```bash
+   javac -d bin -sourcepath src src/avl/Main.java
+   ```
+
+3. Ejecútalo:
+
+   ```bash
+   # Interfaz gráfica
+   java -cp bin avl.Main
+
+   # Consola interactiva
+   java -cp bin avl.MainConsola
+   ```
+
+También puedes abrir el proyecto en Eclipse (o cualquier IDE para Java) y ejecutar `src/avl/Main.java`, o simplemente usar el ejecutable `MotorDeBusqueda.exe` en Windows.
 
 ## Uso
 
-Datasets de prueba y carga de datos
+### Comandos de consola
 
-Este proyecto incluye conjuntos de datos de prueba y scripts para facilitar la carga de información en el sistema sin necesidad de ingresar registros manualmente.
+| Comando                           | Descripción                                        |
+| --------------------------------- | -------------------------------------------------- |
+| `CREATE <tabla>`                  | Crea una nueva tabla                               |
+| `INSERT <tabla> <campos...>`      | Inserta un registro                                |
+| `FIND <tabla> <id>`               | Busca un registro por ID                           |
+| `UPDATE <tabla> <id> <campos...>` | Actualiza un registro                              |
+| `DELETE <tabla> <id>`             | Elimina un registro                                |
+| `RANGE <tabla> <inicio> <fin>`    | Busca registros dentro de un rango de IDs          |
+| `LOAD <archivo>`                  | Ejecuta los comandos de un archivo línea por línea |
+| `DROP <tabla>`                    | Elimina una tabla                                  |
+| `EXIT`                            | Cierra el programa                                 |
 
-Tipos de datasets
+### Ejemplo
 
-El proyecto contiene al menos dos datasets:
+```text
+CREATE estudiantes
+INSERT estudiantes 10 Juan IA U001 5 20
+FIND estudiantes 10
+UPDATE estudiantes 10 Pedro Robotica U002 6 22
+RANGE estudiantes 1 50
+DELETE estudiantes 10
+DROP estudiantes
+EXIT
+```
 
-Dataset pequeño: usado para pruebas rápidas del sistema y validación de operaciones básicas.
-Dataset mediano: contiene una mayor cantidad de registros para evaluar el rendimiento del árbol AVL.
+### Interfaz gráfica
 
-Estos datasets están diseñados para probar operaciones como:
+Desde la GUI puedes:
 
-Inserción masiva de datos
-Búsqueda eficiente
-Eliminación de registros
-Balanceo del árbol AVL
+- Crear tablas y definir el tamaño de cada una.
+- Insertar, buscar (por ID o por rango), actualizar y eliminar registros.
+- Visualizar la estructura del árbol AVL.
+- Guardar y cargar la información desde un archivo JSON.
 
-Scripts de carga de datos (LOAD DATASETS)
+## Datasets de prueba
 
-El sistema permite cargar automáticamente los datasets mediante scripts que ejecutan comandos predefinidos.
+El proyecto incluye datos de prueba para no tener que ingresar registros a mano:
 
-Ejemplo de uso
+| Dataset | Archivo                     | Uso                                                             |
+| ------- | --------------------------- | --------------------------------------------------------------- |
+| Pequeño | `datasets/data_pequeno.txt` | Pruebas rápidas y validación de operaciones básicas             |
+| Mediano | `datasets/data_mediano.txt` | Mayor cantidad de registros para evaluar el rendimiento del AVL |
 
-Para cargar un dataset desde un archivo:
+Sirven para probar inserción masiva, búsqueda eficiente, eliminación de registros y balanceo del árbol.
 
-LOAD datasets/pequeno.txt
+El comando `LOAD` lee el archivo línea por línea y ejecuta cada comando como si se hubiera escrito en la consola:
 
-o
+```text
+LOAD datasets/data_pequeno.txt
+LOAD datasets/data_mediano.txt
+```
 
-LOAD datasets/mediano.txt
-Funcionamiento del LOAD
+Ejemplo del contenido de un dataset:
 
-El comando LOAD lee línea por línea el archivo y ejecuta los comandos como si fueran ingresados en consola.
-
-Ejemplo de contenido del dataset:
-
+```text
 CREATE estudiantes
 INSERT estudiantes 1 Juan Electronica 20261
 INSERT estudiantes 2 Maria Catastral 20261
 INSERT estudiantes 3 Pedro Sistemas 20261
-Ubicación de los archivos
-Motor AVL
-El sistema permite al usuario:
-
-Agregar personas al sistema
-Buscar registros almacenados
-Eliminar datos existentes
-Visualizar la estructura del árbol AVL
-Especificar los espacios que tendra cada arbol
-Guardar y cargar información desde un archivo JSON
-
-La interacción se realiza mediante una interfaz gráfica que facilita la gestión de los datos.
-
-
-## Estructura del Proyecto
 ```
-Motor AVL
-│── src
+
+Los scripts de carga rápida están en la carpeta `scripts/`.
+
+## Estructura del proyecto
+
+```text
+Motor_de_Busqueda_AVL
+├── src
 │   ├── avl
 │   │   ├── AVL.java
 │   │   ├── Nodo.java
 │   │   ├── Main.java
 │   │   ├── MainConsola.java
 │   │   └── ConsolaDB.java
-│   │
 │   ├── gestor
 │   │   └── DatabaseManager.java
-│   │
 │   ├── modelo
 │   │   ├── Registro.java
 │   │   └── Tabla.java
-│   │
 │   ├── persistencia
 │   │   └── JsonManager.java
-│   │
-│   ├── vista
-│   │   ├── VentanaDB.java
-│   │   ├── VentanaCrearTabla.java
-│   │   ├── VentanaInsertarRegistro.java
-│   │   ├── VentanaBuscarRegistro.java
-│   │   ├── VentanaBuscarRango.java
-│   │   ├── VentanaActualizarRegistro.java
-│   │   ├── VentanaEliminarRegistro.java
-│   │   └── panelArbol.java
-│── bin
-│   └── (archivos compilados .class)
-│── datasets
-│   ├── data_pequeno.txt
-│   ├── data_mediano.txt
-│── scripts
-│   ├── cargar_mediano.txt
-│   ├── cargar_pequemo.txt
-│── .project
-│── .classpath
-│── README.md
-│── MotorDeBusqueda.exe
+│   └── vista
+│       ├── VentanaDB.java
+│       ├── VentanaCrearTabla.java
+│       ├── VentanaInsertarRegistro.java
+│       ├── VentanaBuscarRegistro.java
+│       ├── VentanaBuscarRango.java
+│       ├── VentanaActualizarRegistro.java
+│       ├── VentanaEliminarRegistro.java
+│       └── panelArbol.java
+├── datasets
+├── scripts
+├── Documentación_Técnica.pdf
+├── MotorDeBusqueda.exe
+└── README.md
 ```
 
-## Funcionamiento
+## Documentación
 
-El sistema permite interactuar mediante comandos en consola para gestionar tablas y registros.
-
-Comandos disponibles
-Comando	Descripción
--CREATE <tabla>	Crea una nueva tabla  
--INSERT <tabla> <id> <nombre> <programa> <codigo> <semestre> <edad>	Inserta un registro  
--FIND <tabla> <id>	Busca un registro por ID  
--UPDATE <tabla> <id> ...	Actualiza un registro  
--DELETE <tabla> <id>	Elimina un registro  
--RANGE <tabla> <inicio> <fin>	Busca registros en un rango  
--DROP <tabla>	Elimina una tabla  
--EXIT	Cierra el programa  
-
--Ejemplo de uso  
--CREATE estudiantes  
--INSERT estudiantes 10 Juan IA U001 5 20  
--FIND estudiantes 10  
--UPDATE estudiantes 10 Pedro Robotica U002 6 22  
--DELETE estudiantes 10  
--RANGE estudiantes 1 50  
--DROP estudiantes  
--EXIT  
-
-
-## Requisitos
-Java 16 o superior (IMPORTANTE: debe coincidir con la versión de compilación)
-Sistema operativo Windows, Linux o Mac
-Ejecución
-Compilar
-javac Main.java
-Ejecutar
-java Main
-
-O ejecutar el .exe 
+La explicación técnica completa del diseño y los algoritmos está en [`Documentación_Técnica.pdf`](Documentación_Técnica.pdf).
 
 ## Problemas comunes
-Error de versión de Java
 
-Si aparece un error como:
+**`UnsupportedClassVersionError`**
 
-UnsupportedClassVersionError
+El proyecto fue compilado con una versión de Java más nueva que la que tienes instalada.
 
-Significa que el proyecto fue compilado con una versión más nueva de Java que la que estás usando.
+Solución: actualiza Java o vuelve a compilar el proyecto con tu versión.
 
-Solución:
+## Autor
 
-Actualizar Java
-o
-Compilar el proyecto con una versión más baja
+Proyecto final de Ciencias de la Computación, desarrollado por [@justkousei](https://github.com/justkousei).V
