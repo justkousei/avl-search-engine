@@ -1,87 +1,87 @@
-# Motor de Búsqueda con Árboles AVL
+# AVL Tree Search Engine
 
 ![Java](https://img.shields.io/badge/Java-16%2B-orange?logo=openjdk&logoColor=white)
-![Estructura](https://img.shields.io/badge/Estructura-%C3%81rbol%20AVL-green)
-![Persistencia](https://img.shields.io/badge/Persistencia-JSON-blue)
+![Data Structure](https://img.shields.io/badge/Data%20Structure-AVL%20Tree-green)
+![Persistence](https://img.shields.io/badge/Persistence-JSON-blue)
 
-Motor de búsqueda implementado en **Java** que utiliza **árboles AVL** como estructura principal para almacenar y gestionar datos de manera eficiente.
+A search engine written in **Java** that uses **AVL trees** as its core data structure to store and manage data efficiently.
 
-El sistema simula una base de datos ligera que permite insertar, buscar, actualizar y eliminar registros, garantizando un rendimiento óptimo gracias al balanceo automático del árbol AVL.
+The system works like a lightweight database: it lets you insert, search, update, and delete records, with consistently fast performance thanks to the AVL tree's automatic balancing.
 
-<!-- Cuando tengas capturas, guárdalas en docs/ y descomenta:
-![Interfaz gráfica](docs/captura_gui.png)
+<!-- Once you have screenshots, save them in docs/ and uncomment:
+![Graphical interface](docs/gui_screenshot.png)
 -->
 
-## Características
+## Features
 
-- Implementación propia de árboles AVL con balanceo automático.
-- Inserción, eliminación y búsqueda en **O(log n)**.
-- Búsqueda por rango de IDs.
-- Manejo de múltiples tablas.
-- Persistencia de datos en archivos JSON.
-- Interfaz gráfica (GUI) con visualización del árbol.
-- Consola interactiva con comandos.
-- Carga masiva de datos mediante scripts y datasets de prueba.
+- Custom AVL tree implementation with automatic balancing.
+- Insertion, deletion, and search in **O(log n)**.
+- Range search by ID.
+- Support for multiple tables.
+- Data persistence in JSON files.
+- Graphical user interface (GUI) with AVL tree visualization.
+- Interactive command-line console.
+- Bulk data loading through scripts and sample datasets.
 
-## Tecnologías utilizadas
+## Tech Stack
 
-| Componente            | Tecnología        |
-| --------------------- | ----------------- |
-| Lenguaje              | Java              |
-| Estructura de datos   | Árbol AVL         |
-| Persistencia          | Archivos JSON     |
-| Interfaz gráfica      | Java Swing        |
-| Entorno de desarrollo | Eclipse / VS Code |
+| Component               | Technology        |
+| ----------------------- | ----------------- |
+| Language                | Java              |
+| Data structure          | AVL Tree          |
+| Persistence             | JSON files        |
+| GUI                     | Java Swing        |
+| Development environment | Eclipse / VS Code |
 
-## Requisitos
+## Requirements
 
-- **Java 16 o superior** (debe coincidir con la versión con la que se compila).
-- Windows, Linux o macOS.
+- **Java 16 or higher** (must match the version used to compile).
+- Windows, Linux, or macOS.
 
-## Instalación
+## Installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 
    ```bash
    git clone https://github.com/justkousei/Motor_de_Busqueda_AVL.git
    cd Motor_de_Busqueda_AVL
    ```
 
-2. Compila el proyecto:
+2. Compile the project:
 
    ```bash
    javac -d bin -sourcepath src src/avl/Main.java
    ```
 
-3. Ejecútalo:
+3. Run it:
 
    ```bash
-   # Interfaz gráfica
+   # Graphical interface
    java -cp bin avl.Main
 
-   # Consola interactiva
+   # Interactive console
    java -cp bin avl.MainConsola
    ```
 
-También puedes abrir el proyecto en Eclipse (o cualquier IDE para Java) y ejecutar `src/avl/Main.java`, o simplemente usar el ejecutable `MotorDeBusqueda.exe` en Windows.
+You can also open the project in Eclipse (or any Java IDE) and run `src/avl/Main.java`, or simply use the `MotorDeBusqueda.exe` executable on Windows.
 
-## Uso
+## Usage
 
-### Comandos de consola
+### Console commands
 
-| Comando                           | Descripción                                        |
-| --------------------------------- | -------------------------------------------------- |
-| `CREATE <tabla>`                  | Crea una nueva tabla                               |
-| `INSERT <tabla> <campos...>`      | Inserta un registro                                |
-| `FIND <tabla> <id>`               | Busca un registro por ID                           |
-| `UPDATE <tabla> <id> <campos...>` | Actualiza un registro                              |
-| `DELETE <tabla> <id>`             | Elimina un registro                                |
-| `RANGE <tabla> <inicio> <fin>`    | Busca registros dentro de un rango de IDs          |
-| `LOAD <archivo>`                  | Ejecuta los comandos de un archivo línea por línea |
-| `DROP <tabla>`                    | Elimina una tabla                                  |
-| `EXIT`                            | Cierra el programa                                 |
+| Command                           | Description                               |
+| --------------------------------- | ----------------------------------------- |
+| `CREATE <table>`                  | Creates a new table                       |
+| `INSERT <table> <fields...>`      | Inserts a record                          |
+| `FIND <table> <id>`               | Finds a record by ID                      |
+| `UPDATE <table> <id> <fields...>` | Updates a record                          |
+| `DELETE <table> <id>`             | Deletes a record                          |
+| `RANGE <table> <start> <end>`     | Finds records within an ID range          |
+| `LOAD <file>`                     | Runs the commands in a file, line by line |
+| `DROP <table>`                    | Deletes a table                           |
+| `EXIT`                            | Closes the program                        |
 
-### Ejemplo
+### Example
 
 ```text
 CREATE estudiantes
@@ -94,34 +94,34 @@ DROP estudiantes
 EXIT
 ```
 
-### Interfaz gráfica
+### Graphical interface
 
-Desde la GUI puedes:
+From the GUI you can:
 
-- Crear tablas y definir el tamaño de cada una.
-- Insertar, buscar (por ID o por rango), actualizar y eliminar registros.
-- Visualizar la estructura del árbol AVL.
-- Guardar y cargar la información desde un archivo JSON.
+- Create tables and define the size of each one.
+- Insert, search (by ID or by range), update, and delete records.
+- Visualize the AVL tree structure.
+- Save and load data from a JSON file.
 
-## Datasets de prueba
+## Sample Datasets
 
-El proyecto incluye datos de prueba para no tener que ingresar registros a mano:
+The project includes test data so you don't have to enter records by hand:
 
-| Dataset | Archivo                     | Uso                                                             |
-| ------- | --------------------------- | --------------------------------------------------------------- |
-| Pequeño | `datasets/data_pequeno.txt` | Pruebas rápidas y validación de operaciones básicas             |
-| Mediano | `datasets/data_mediano.txt` | Mayor cantidad de registros para evaluar el rendimiento del AVL |
+| Dataset | File                        | Purpose                                              |
+| ------- | --------------------------- | ---------------------------------------------------- |
+| Small   | `datasets/data_pequeno.txt` | Quick tests and validation of basic operations       |
+| Medium  | `datasets/data_mediano.txt` | Larger number of records to evaluate AVL performance |
 
-Sirven para probar inserción masiva, búsqueda eficiente, eliminación de registros y balanceo del árbol.
+They are designed to test bulk insertion, efficient search, record deletion, and AVL tree balancing.
 
-El comando `LOAD` lee el archivo línea por línea y ejecuta cada comando como si se hubiera escrito en la consola:
+The `LOAD` command reads a file line by line and runs each command as if it had been typed into the console:
 
 ```text
 LOAD datasets/data_pequeno.txt
 LOAD datasets/data_mediano.txt
 ```
 
-Ejemplo del contenido de un dataset:
+Example dataset content:
 
 ```text
 CREATE estudiantes
@@ -130,9 +130,9 @@ INSERT estudiantes 2 Maria Catastral 20261
 INSERT estudiantes 3 Pedro Sistemas 20261
 ```
 
-Los scripts de carga rápida están en la carpeta `scripts/`.
+Quick-load scripts are in the `scripts/` folder.
 
-## Estructura del proyecto
+## Project Structure
 
 ```text
 Motor_de_Busqueda_AVL
@@ -166,18 +166,18 @@ Motor_de_Busqueda_AVL
 └── README.md
 ```
 
-## Documentación
+## Documentation
 
-La explicación técnica completa del diseño y los algoritmos está en [`Documentación_Técnica.pdf`](Documentación_Técnica.pdf).
+The full technical write-up of the design and algorithms is in [`Documentación_Técnica.pdf`](Documentación_Técnica.pdf) (in Spanish).
 
-## Problemas comunes
+## Troubleshooting
 
 **`UnsupportedClassVersionError`**
 
-El proyecto fue compilado con una versión de Java más nueva que la que tienes instalada.
+The project was compiled with a newer Java version than the one you have installed.
 
-Solución: actualiza Java o vuelve a compilar el proyecto con tu versión.
+Fix: update Java, or recompile the project with your installed version.
 
-## Autor
+## Author
 
-Proyecto final de Ciencias de la Computación, desarrollado por [@justkousei](https://github.com/justkousei).V
+Final project for Computer Science, developed by [@justkousei](https://github.com/justkousei).
